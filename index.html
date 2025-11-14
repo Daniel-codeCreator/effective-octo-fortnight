@@ -3,39 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Carta</title>
+    <title></title>
 </head>
+<link rel="stylesheet" href="styles.css">
 <body>
-
-    <div class="container">
-
-    <div id="gifContainer">
-        <img id="gifContainerImg" src="https://i.postimg.cc/cLvJ2G5D/mocha.gif" alt="Ositos Iniciales">
+    <h1>Corazón con...</h1>
+    
+    <div id="inicio">
+        <input type="text" id="nameInput" placeholder="Escribe tu nombre...."><br><br>
+        <button id="btnFormarCorazon">Formar Corazón</button>
     </div>
 
-    <div class="happyGifContainer" style="display: none;">
-        <img src="mocha5final.gif" alt="Ositos felices" style="width: 100%; height: 100%">
-    </div>
-
-    <div class="happyGifContainer4" style="display: none;">
-        <img src="mocha9final.gif" alt="Ositos felices" style="width: 100%; height: 100%">
-    </div>
-
-    <div class="sadGifContainer2" style="display: none;">
-        <img src="mocha3.gif" alt="Ositos tristes" style="width: 80%; height: 80%">
+    <div id="corzonFormado">  
+        <pre id="heart"></pre>
+        <p id="mensajeFinal"></p>
     </div>
 
 
-    <h1 id="question">¿Me perdonas?</h1>
-    <div id="messageContainer" style="display: none;"></div>
-
-    <button id="siBtn">Si</button>
-    <button id="noBtn">No</button>
-
-</div>
-
-<script src="script.js"></script>    
-
+<script src="Logica.js"></script>   
 </body>
 </html>
