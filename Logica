@@ -1,1 +1,184 @@
+const heaterEL = document.getElementById('heart');
+const btn = document.getElementById('btnFormarCorazon');
+const input = document.getElementById('nameInput');
+const mensaje = document.getElementById('mensajeFinal');
+
+const patronCorazon = [
+"           *************         *************           ",
+"        *******************   *******************        ",
+"     ***********************************************     ",
+"   ***************************************************   ",
+"  *****************************************************  ",
+" ******************************************************* ",
+" ******************************************************* ",
+"  *****************************************************  ",
+"    *************************************************    ",
+"      *********************************************      ",
+"        *****************************************        ",
+"          *************************************          ",
+"            *********************************            ",
+"              *****************************              ",
+"                *************************                ",
+"                  *********************                  ",
+"                    *****************                    ",
+"                      *************                      ",
+"                        *********                        ",
+"                          *****                          ",
+"                           ***                           ",
+"                            *                            "
+];
+
+function formarCorazon(nombre) {
+    heaterEL.textContent = '';
+    mensaje.textContent = ''; 
+    mensaje.style.opacity = 0;
+
+    if (!nombre) nombre = 'Barcelona';
+
+    let respuestaTxt = nombre.repeat(200);
+    let index = 0;
+
+    const total = patronCorazon.reduce((acc, linea) =>
+        acc + [...linea].filter(c => c === '*').length
+    , 0);
+
+    let display = patronCorazon.map(linea => Array(linea.length).fill(' '));
+
+    function animate() {
+        if (index >= total) {
+            let nombreIngresado = input.value.trim();
+            // mensaje.textContent = `Te amo ${input.value.trim() || Barcelona}`
+
+
+            if (nombreIngresado === "Allison") {
+                mensaje.textContent = "Te amo Anni ❤️";
+            } 
+            else if (nombreIngresado === "Anni") {
+                mensaje.textContent = "Te amo Allison ❤️";
+            }
+            else {
+                mensaje.textContent = `Te amo ${nombreIngresado || "Barcelona"} ❤️`;
+            }
+
+            mensaje.style.opacity = 1;
+            return;
+        }
+
+        let count = 0;
+
+        for (let i = 0; i < patronCorazon.length; i++) {
+            for (let j = 0; j < patronCorazon[i].length; j++) {
+
+                if (patronCorazon[i][j] === '*') {
+                    if (count === index) {
+                        display[i][j] = respuestaTxt[index % respuestaTxt.length];
+
+                        heaterEL.textContent = display
+                            .map(r => r.join(''))
+                            .join('\n');
+
+                        index++;
+                        setTimeout(animate, 20);
+                        return;
+                    }
+                    count++;
+                }
+            }
+        }
+    }
+
+    animate();
+}
+
+btn.addEventListener('click', () => {
+    document.getElementById("inicio").style.display = "none";
+    document.getElementById("corzonFormado").style.display = "block";
+
+    formarCorazon(input.value.trim());
+});
+
+input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') formarCorazon(input.value.trim());
+});
+
+
+// const patronCorazon = [
+// "           *************         *************           ",
+// "        *******************   *******************        ",
+// "     ***********************************************     ",
+// "   ***************************************************   ",
+// "  *****************************************************  ",
+// " ******************************************************* ",
+// " ******************************************************* ",
+// "  *****************************************************  ",
+// "    *************************************************    ",
+// "      *********************************************      ",
+// "        *****************************************        ",
+// "          *************************************          ",
+// "            *********************************            ",
+// "              *****************************              ",
+// "                *************************                ",
+// "                  *********************                  ",
+// "                    *****************                    ",
+// "                      *************                      ",
+// "                        *********                        ",
+// "                          *****                          ",
+// "                           ***                           ",
+// "                            *                            "
+// ];
+
+// const patronCorazon = [
+// "   *****       *****   ",
+// " *********   ********* ",
+// "*********** ***********",
+// "***********************",
+// " ********************* ",
+// "  *******************  ",
+// "   *****************   ",
+// "    ***************    ",
+// "      ***********      ",
+// "        *******        ",
+// "          ***          ",
+// "           *           "
+// ];
+// function formarCorazon(nombre) {
+//     heaterEL.textContent = '';
+//     if (!nombre) nombre = 'Barcelona';
+
+//     let respuestaTxt = nombre.repeat(200);
+//     let index = 0;
+
+//     const total = patronCorazon.reduce((a, l) => a + l.length, 0);
+
+//     let display = patronCorazon.map(linea => Array(linea.length).fill(' '));
+
+//     function animate() {
+//         if (index >= total) return;
+//         let count = 0;
+
+//         for (let i = 0; i < patronCorazon.length; i++) {
+//             for (let j = 0; j < patronCorazon[i].length; j++) {
+
+//                 if (patronCorazon[i][j] === '*') {
+
+//                     if (count === index) {
+//                         display[i][j] = respuestaTxt[index % respuestaTxt.length];
+
+//                         heaterEL.textContent = display
+//                             .map(r => r.join(''))
+//                             .join('\n');
+
+//                         index++;
+//                         setTimeout(animate, 20);
+//                         return;
+//                     }
+
+//                     count++;
+//                 }
+//             }
+//         }
+//     }
+
+//     animate();
+// }
 
