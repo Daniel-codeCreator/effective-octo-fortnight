@@ -29,65 +29,42 @@ const patronCorazon = [
 ];
 
 function formarCorazon(nombre) {
-    heaterEL.textContent = '';
-    mensaje.textContent = ''; 
-    mensaje.style.opacity = 0;
+     heaterEL.textContent = '';
+     if (!nombre) nombre = 'Barcelona';
 
-    if (!nombre) nombre = 'Barcelona';
-
-    let respuestaTxt = nombre.repeat(200);
+     let respuestaTxt = nombre.repeat(200);
     let index = 0;
-
-    const total = patronCorazon.reduce((acc, linea) =>
-        acc + [...linea].filter(c => c === '*').length
-    , 0);
+   const total = patronCorazon.reduce((a, l) => a + l.length, 0);
 
     let display = patronCorazon.map(linea => Array(linea.length).fill(' '));
-
-    function animate() {
-        if (index >= total) {
-            let nombreIngresado = input.value.trim();
-            // mensaje.textContent = `Te amo ${input.value.trim() || Barcelona}`
-
-
-            if (nombreIngresado === "Allison") {
-                mensaje.textContent = "Te amo Anni ❤️";
-            } 
-            else if (nombreIngresado === "Anni") {
-                mensaje.textContent = "Te amo Allison ❤️";
-            }
-            else {
-                mensaje.textContent = `Te amo ${nombreIngresado || "Barcelona"} ❤️`;
-            }
-
-            mensaje.style.opacity = 1;
-            return;
-        }
-
+function animate() {
+        if (index >= total) return;
         let count = 0;
 
         for (let i = 0; i < patronCorazon.length; i++) {
-            for (let j = 0; j < patronCorazon[i].length; j++) {
+             for (let j = 0; j < patronCorazon[i].length; j++) {
 
                 if (patronCorazon[i][j] === '*') {
+
                     if (count === index) {
-                        display[i][j] = respuestaTxt[index % respuestaTxt.length];
+                         display[i][j] = respuestaTxt[index % respuestaTxt.length];
 
-                        heaterEL.textContent = display
+                         heaterEL.textContent = display
                             .map(r => r.join(''))
-                            .join('\n');
+                             .join('\n');
 
-                        index++;
-                        setTimeout(animate, 20);
-                        return;
-                    }
-                    count++;
-                }
-            }
+                         index++;
+                         setTimeout(animate, 20);
+                         return;
+                     }
+
+                     count++;
+                 }
+             }
         }
-    }
+     }
 
-    animate();
+   animate();
 }
 
 btn.addEventListener('click', () => {
@@ -181,3 +158,4 @@ input.addEventListener('keydown', (e) => {
 
 //     animate();
 // }
+
